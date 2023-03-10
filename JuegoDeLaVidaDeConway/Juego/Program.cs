@@ -1,13 +1,10 @@
-﻿using System;
-
-namespace VidaDeConway;
-
+﻿namespace Juego;
 class Program
 {
     static void Main(string[] args)
     {
         // Crear la matriz
-        int[,] matrix = new int[50, 50];
+        int[,] matrix = new int[25, 50];
 
         // Llenar la matriz aleatoriamente con células vivas o muertas
         Random random = new Random();
