@@ -22,7 +22,7 @@ A new generation begins when all cells have been updated once. This means the ne
 
 ## Features
 This repository includes two different programs:
-1. A random cell initialization program that creates a 100x100 matrix and runs it with random cell states.
+1. A random cell initialization program that creates a 50x50 matrix and runs it with random cell states.
 2. A glider simulation program that showcases a glider moving across the screen.
 
 ## Getting Started
