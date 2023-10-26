@@ -1,27 +1,35 @@
-# JuegoDeLaVidaDeConway
-Juego de la vida de Conway realizado en el lenguaje C#
+# Conway's Game of Life in C#
 
--Requisitos a la hora de hacer el juego:
+This repository hosts an implementation of Conway's Game of Life in C#, a classic cellular automaton. It was developed as a practical exercise during my studies, following the provided guidelines:
 
-En esta práctica se pide programar el famoso Juego de la vida de Conway en un aplicación de consola.
+## Exercise Requirements
+In this practice, the task was to program the famous Conway's Game of Life in a console application, adhering to the following guidelines:
 
-1º Crear una matriz bidimensional de 50 de ancho y 50 de alto.
+1. Create a 50x50 two-dimensional matrix.
+2. At the start, randomly set each cell in the matrix to be alive or dead (with a 50% probability).
+3. The iterations are infinite, with a 250-millisecond pause between each.
+4. In each iteration, apply the rules of Conway's Game of Life to the created matrix.
 
-2º Al iniciar, por cada celda en la matriz pon aleatoriamente si está vivo o muerto (probabilidad del 50%).
+## Rules of the Game
+The universe of Conway's Game of Life consists of an infinite two-dimensional orthogonal grid of square cells, each of which can be in one of two possible states: alive or dead. Each cell interacts with its eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.
 
-3º Las iteraciones serán infinitas con un tiempo de espera entre cada una de 250 milisegundos.
+The rules can be summarized as follows:
+- Any live cell with two or three live neighbors survives.
+- Any dead cell with three live neighbors becomes a live cell.
+- All other live cells die, and all other dead cells remain dead.
 
-4º En cada iteración aplica las normas del Juego de la vida en la matriz creada.
+A new generation begins when all cells have been updated once. This means the next generation starts from scratch, with no memory of previous generations.
 
--Reglas del juego:
+## Features
+This repository includes two different programs:
+1. A random cell initialization program that creates a 100x100 matrix and runs it with random cell states.
+2. A glider simulation program that showcases a glider moving across the screen.
 
-  .El universo del Juego de la Vida es una cuadrícula ortogonal infinita y bidimensional de células cuadradas, cada una de las cuales se encuentra en uno de los dos estados posibles, vivas o muertas (o pobladas y despobladas, respectivamente). Cada celda interactúa con sus ocho, que son las celdas que son horizontal, vertical o diagonalmente adyacentes.
+## Getting Started
+1. Clone this repository.
+2. Build and run the program in your preferred C# development environment.
+3. Explore and modify the code as needed.
+4. Enjoy experimenting with Conway's Game of Life and feel free to contribute to make it even more interesting!
 
-  .Las reglas, se pueden condensar en lo siguiente:
+Feel free to provide feedback, suggestions, or contributions to enhance the code or address any issues. Your input is always welcome to improve this implementation.
 
-  .Cualquier célula viva con dos o tres vecinos vivos sobrevive.
-  .Cualquier célula muerta con tres vecinos vivos se convierte en una célula viva.
-  .Todas las demás células vivas mueren en la próxima generación. Del mismo modo, todas las demás células muertas permanecen muertas.
-  .El patrón inicial constituye la semilla del sistema. La primera generación se crea aplicando las reglas anteriores simultáneamente a cada célula de la semilla, viva o muerta; los nacimientos y las muertes ocurren simultáneamente, y el momento discreto en el que esto sucede a veces se llama garrapata.
-
-  .Una nueva generación comienza cuando todas las celdas se han actualizado una vez. Esto significa que la próxima generación comienza desde cero, sin memoria de lo que sucedió en generaciones anteriores.
