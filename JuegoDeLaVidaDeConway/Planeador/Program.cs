@@ -3,83 +3,42 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Crear la matriz
-        int[,] matrix = new int[25, 50];
+        int[,] m = new int[25, 50];
 
-        // Llenar la matriz con células muertas
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                matrix[i, j] = 0;
-            }
-        }
-        //Crear planeador
-        matrix[1, 2] = 1;
-        matrix[2, 3] = 1;
-        matrix[3, 3] = 1;
-        matrix[3, 2] = 1;
-        matrix[3, 1] = 1;
+        for (int i = 0; i < m.GetLength(0); i++)
+            for (int j = 0; j < m.GetLength(1); j++)
+                m[i, j] = 0;
 
-        // Bucle infinito
+        m[1, 2] = 1;
+        m[2, 3] = 1;
+        m[3, 3] = 1;
+        m[3, 2] = 1;
+        m[3, 1] = 1;
+
         while (true)
         {
-            // Imprimir la matriz
             Console.Clear();
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < m.GetLength(0); i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write(matrix[i, j] == 1 ? "O" : " ");
-                }
+                for (int j = 0; j < m.GetLength(1); j++)
+                    Console.Write(m[i, j] == 1 ? "O" : " ");
                 Console.WriteLine();
             }
 
-            // Crear una copia de la matriz para calcular la siguiente iteración
-            int[,] newMatrix = new int[matrix.GetLength(0), matrix.GetLength(1)];
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+            int[,] n = new int[m.GetLength(0), m.GetLength(1)];
+            for (int i = 0; i < m.GetLength(0); i++)
+                for (int j = 0; j < m.GetLength(1); j++)
                 {
-                    newMatrix[i, j] = matrix[i, j];
+                    int c = 0;
+                    for (int x = -1; x <= 1; x++)
+                        for (int y = -1; y <= 1; y++)
+                            if (x != 0 || y != 0)
+                                c += m[(i + x + m.GetLength(0)) % m.GetLength(0), (j + y + m.GetLength(1)) % m.GetLength(1)];
+
+                    n[i, j] = m[i, j] == 1 ? c < 2 || c > 3 ? 0 : 1 : c == 3 ? 1 : 0;
                 }
-            }
 
-            // Aplicar las normas del Juego de la Vida de Conway
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    // Contar el número de vecinos vivos
-                    int neighbors = 0;
-                    for (int newI = i - 1; newI <= i + 1; newI++)
-                    {
-                        for (int newJ = j - 1; newJ <= j + 1; newJ++)
-                        {
-                            if (newI >= 0 && newI < matrix.GetLength(0) && newJ >= 0 && newJ < matrix.GetLength(1) && (newI != i || newJ != j))
-                            {
-                                neighbors += matrix[newI, newJ];
-                            }
-                        }
-                    }
-
-                    // Aplicar las normas
-                    if (matrix[i, j] == 1 && (neighbors < 2 || neighbors > 3))
-                    {
-                        newMatrix[i, j] = 0;
-                    }
-                    else if (matrix[i, j] == 0 && neighbors == 3)
-                    {
-                        newMatrix[i, j] = 1;
-                    }
-                }
-            }
-
-            // Reemplazar la matriz actual con la siguiente iteración
-            matrix = newMatrix;
-
-            // Esperar 250 milisegundos antes de la siguiente iteración
+            m = n;
             Thread.Sleep(250);
         }
     }
